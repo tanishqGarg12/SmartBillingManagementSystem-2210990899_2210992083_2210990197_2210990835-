@@ -1,0 +1,83 @@
+import React from 'react';
+import './App.css';
+import { Analytics } from '@vercel/analytics/react';
+import ParticlesBackground from './components/ParticlesBackground';
+import Navbar from './Homepage/Navbar';
+import HeroSection from './Homepage/HeroSection';
+import AboutUs from "./Homepage/AboutUs"
+import About from "./Homepage/About"
+import InfoCard from './Homepage/InfoCard';
+import Organizers from './Homepage/Organizers';
+import Footer from './Homepage/Footer';
+import DonutChartSection from './Homepage/DonutChartSection';
+import { DarkModeProvider } from './DarkModeContext';
+import Layout from './Layout';
+import History from './Dashboard/History';
+import CreateBill from './Dashboard/CreateBill';
+import Setting from './Dashboard/Setting';
+import Stock from './Dashboard/Stock';
+import Busiiness from './Dashboard/Busiiness';
+import { Route, Routes } from 'react-router-dom';
+import Login from './components/login';
+import ForgotPassword from './components/ForgotPassword';
+import PaymentSuccess from "./components/PaymentSuccess"
+import ResetPassword from './components/ResetPassword';
+import Signup from './components/Signup';
+import InventoryApp from './components/InventoryApp';
+import AllInventory from './Dashboard/AllInventory';
+import LowStock from './Dashboard/LowStock';
+import CategoryForm from './Dashboard/CategoryForm';
+import SubcategoryForm from './Dashboard/SubcategoryForm';
+import Green from './Homepage/Green';
+import PricingPlans from './Homepage/PricingPlans';
+import ContactForm from './Homepage/ContactForm';
+
+export default function App() {
+  return (
+    <DarkModeProvider>
+      <div className='relative w-full min-h-screen'>
+        <ParticlesBackground id="particles" />
+        <div className='relative z-10'>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={
+              <>
+                <HeroSection />
+                <About />
+                <DonutChartSection />
+                <PricingPlans />
+                <Organizers />
+                <Green />
+                <InfoCard />
+                <Footer />
+              </>
+            } />
+
+            <Route path="all-inventory" element={<AllInventory />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/Contact" element={<ContactForm />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password/:token" element={<ResetPassword />} />
+            <Route path="/signup" element={<Signup />} />
+
+            <Route path="/dashboard" element={<Layout />}>
+              <Route index path="history" element={<CreateBill />} />
+              <Route path="addinventory" element={<InventoryApp />} />
+              <Route path="business" element={<Busiiness />} />
+              <Route path="create-bill" element={<History />} />
+              <Route path="stock-details" element={<Stock />} />
+              <Route path="all-inventory" element={<AllInventory />} />
+              <Route path="low-inventory" element={<LowStock />} />
+              <Route path="settings" element={<Setting />} />
+              <Route path="create-bill/pay-success" element={<PaymentSuccess />} />
+              <Route path="create-category" element={<CategoryForm />} />
+              <Route path="create_sub-category" element={<SubcategoryForm />} />
+            </Route>
+          </Routes>
+        </div>
+      </div>
+      <Analytics />
+    </DarkModeProvider>
+  );
+}
