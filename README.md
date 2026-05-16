@@ -12,3 +12,6 @@ Copyright
 
 ## Current Status
 - Scrutiny Phase
+
+## Deployed Link 
+- https://sbms1-r2as.vercel.app/
